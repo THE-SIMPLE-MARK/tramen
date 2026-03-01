@@ -103,6 +103,7 @@ struct OverviewContent: View {
                             .font(.system(.caption2, design: .default))
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
+                            .lineLimit(1)
                             .padding(.horizontal, 4)
                             .padding(.vertical, 2)
                             .background(Color.secondary, in: RoundedRectangle(cornerRadius: 4))
