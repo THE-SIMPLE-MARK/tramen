@@ -1,0 +1,375 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%lld km/h" : {
+      "shouldTranslate" : false
+    },
+    "%lld min ahead" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld perccel siet"
+          }
+        }
+      }
+    },
+    "%lld min behind" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld perccel késik"
+          }
+        }
+      }
+    },
+    "%llds" : {
+      "shouldTranslate" : false
+    },
+    "• %@" : {
+      "shouldTranslate" : false
+    },
+    "Arrival" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Érkezés"
+          }
+        }
+      }
+    },
+    "Bikes Allowed" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kerékpár felengedett"
+          }
+        }
+      }
+    },
+    "Callsign" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hívójel"
+          }
+        }
+      }
+    },
+    "Category" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategória"
+          }
+        }
+      }
+    },
+    "Departure" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indulás"
+          }
+        }
+      }
+    },
+    "Details" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Részletek"
+          }
+        }
+      }
+    },
+    "Done" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kész"
+          }
+        }
+      }
+    },
+    "Last Updated" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utoljára frissítve"
+          }
+        }
+      }
+    },
+    "N/A" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "N/A"
+          }
+        }
+      }
+    },
+    "Next Stop" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Következő megálló"
+          }
+        }
+      }
+    },
+    "No" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nem"
+          }
+        }
+      }
+    },
+    "On time" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Időben"
+          }
+        }
+      }
+    },
+    "Overview" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Áttekintés"
+          }
+        }
+      }
+    },
+    "Plt. %@" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vág. %@"
+          }
+        }
+      }
+    },
+    "Refresh Settings" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frissítési beállítások"
+          }
+        }
+      }
+    },
+    "Refreshing..." : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frissítés..."
+          }
+        }
+      }
+    },
+    "Route" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vonal"
+          }
+        }
+      }
+    },
+    "Schedule" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menetrend"
+          }
+        }
+      }
+    },
+    "Services" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szolgáltatások"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beállítások"
+          }
+        }
+      }
+    },
+    "Speed" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sebesség"
+          }
+        }
+      }
+    },
+    "Stops (%lld)" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Megállók (%lld)"
+          }
+        }
+      }
+    },
+    "Suburban" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elővárosi"
+          }
+        }
+      }
+    },
+    "Train" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vonat"
+          }
+        }
+      }
+    },
+    "Train Info" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vonat adatai"
+          }
+        }
+      }
+    },
+    "Tram" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Villamos"
+          }
+        }
+      }
+    },
+    "Tram-Train" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Villamos-vonat"
+          }
+        }
+      }
+    },
+    "Type" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Típus"
+          }
+        }
+      }
+    },
+    "UIC Number" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UIC Szám"
+          }
+        }
+      }
+    },
+    "Update Frequency" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frissítési gyakoriság"
+          }
+        }
+      }
+    },
+    "Updates every %lld seconds" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld másodpercekként frissül."
+          }
+        }
+      }
+    },
+    "Vehicle" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jármű"
+          }
+        }
+      }
+    },
+    "Wheelchair Accessible" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kerekesszékkel használható"
+          }
+        }
+      }
+    },
+    "Yes" : {
+      "localizations" : {
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Igen"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.1"
+}

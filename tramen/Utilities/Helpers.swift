@@ -66,15 +66,15 @@ struct TrainTypeHelper {
     static func displayName(for mode: String?) -> String {
         switch mode?.uppercased() {
         case "RAIL":
-            return "Train"
+            return String(localized: "Train")
         case "TRAM":
-            return "Tram"
+            return String(localized: "Tram")
         case "SUBURBAN_RAILWAY":
-            return "Suburban"
+            return String(localized: "Suburban")
         case "TRAMTRAIN":
-            return "Tram-Train"
+            return String(localized: "Tram-Train")
         default:
-            return "Vehicle"
+            return String(localized: "Vehicle")
         }
     }
 }
@@ -88,12 +88,12 @@ struct TimeFormatHelper {
     
     static func formatDelay(seconds: Int64?) -> String {
         guard let seconds = seconds, seconds != 0 else {
-            return "On time"
+            return String(localized: "On time")
         }
         
         let minutes = Int(seconds / 60)
         if minutes == 0 {
-            return "On time"
+            return String(localized: "On time")
         } else if minutes > 0 {
             return "+\(minutes)m"
         } else {

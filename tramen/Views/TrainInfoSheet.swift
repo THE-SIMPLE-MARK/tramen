@@ -75,11 +75,11 @@ struct OverviewContent: View {
     
     var scheduleStatus: String {
         if delayMinutes == 0 {
-            return "On time"
+            return String(localized: "On time")
         } else if delayMinutes > 0 {
-            return "\(delayMinutes) min behind"
+            return String(localized: "\(delayMinutes) min behind")
         } else {
-            return "\(-delayMinutes) min ahead"
+            return String(localized: "\(-delayMinutes) min ahead")
         }
     }
     
@@ -99,7 +99,7 @@ struct OverviewContent: View {
                         .frame(width: 28, height: 28)
                     
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(train.trip.route.longName ?? train.trip.route.shortName ?? "N/A")
+                        Text(train.trip.route.longName ?? train.trip.route.shortName ?? String(localized: "N/A"))
                             .font(.system(.caption2, design: .default))
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
@@ -107,7 +107,7 @@ struct OverviewContent: View {
                             .padding(.vertical, 2)
                             .background(Color.secondary, in: RoundedRectangle(cornerRadius: 4))
                         
-                        Text(train.trip.tripHeadsign ?? "N/A")
+                        Text(train.trip.tripHeadsign ?? String(localized: "N/A"))
                             .font(.system(.subheadline, design: .default))
                             .fontWeight(.semibold)
                     }
@@ -184,39 +184,39 @@ struct DetailsContent: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            InfoRow(label: "Callsign", value: train.trip.tripShortName ?? "Unknown")
+            InfoRow(label: String(localized: "Callsign"), value: train.trip.tripShortName ?? "Unknown")
             
             Divider()
             
-            InfoRow(label: "UIC Number", value: UICFormatter.format(vehicleId: train.vehicleId))
+            InfoRow(label: String(localized: "UIC Number"), value: UICFormatter.format(vehicleId: train.vehicleId))
             
             Divider()
             
-            InfoRow(label: "Type", value: TrainTypeHelper.displayName(for: train.trip.route.mode))
+            InfoRow(label: String(localized: "Type"), value: TrainTypeHelper.displayName(for: train.trip.route.mode))
             
             Divider()
             
             InfoRow(
-                label: "Wheelchair Accessible",
-                value: train.trip.wheelchairAccessible == "POSSIBLE" ? "Yes" : "No"
+                label: String(localized: "Wheelchair Accessible"),
+                value: train.trip.wheelchairAccessible == "POSSIBLE" ? String(localized: "Yes") : String(localized: "No")
             )
             
             Divider()
             
             InfoRow(
-                label: "Bikes Allowed",
-                value: train.trip.bikesAllowed == "ALLOWED" ? "Yes" : "No"
+                label: String(localized: "Bikes Allowed"),
+                value: train.trip.bikesAllowed == "ALLOWED" ? String(localized: "Yes") : String(localized: "No")
             )
             
             if let trainCategoryId = train.trip.trainCategoryId {
                 Divider()
-                InfoRow(label: "Category", value: trainCategoryId)
+                InfoRow(label: String(localized: "Category"), value: trainCategoryId)
             }
             
             if let lastUpdated = train.lastUpdated {
                 Divider()
                 let date = Date(timeIntervalSince1970: TimeInterval(lastUpdated / 1000))
-                InfoRow(label: "Last Updated", value: date.formatted(date: .omitted, time: .standard))
+                InfoRow(label: String(localized: "Last Updated"), value: date.formatted(date: .omitted, time: .standard))
             }
             
             if let infoServices = train.trip.infoServices, !infoServices.isEmpty {
@@ -282,7 +282,7 @@ struct StopsContent: View {
                                 Spacer()
                                 
                                 if let platformCode = stopTime.stop.platformCode, !platformCode.isEmpty {
-                                    Text("Plt \(platformCode)")
+                                    Text("Plt. \(platformCode)")
                                         .font(.system(.caption2, design: .default))
                                         .foregroundColor(.secondary)
                                 }
