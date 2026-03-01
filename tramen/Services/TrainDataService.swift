@@ -5,9 +5,16 @@ class TrainDataService: ObservableObject {
     @Published var trainData: Holavonat?
     @Published var isLoading = false
     @Published var error: String?
+    @Published var refreshInterval: TimeInterval = 15.0 {
+        didSet {
+            if refreshTimer != nil {
+                stopRefreshing()
+                startRefreshing()
+            }
+        }
+    }
     
     private var refreshTimer: Timer?
-    private let refreshInterval: TimeInterval = 15.0
     private let apiUrl = "https://cdn.holavonat.is/train_data_v3.json"
     private let cacheFileName = "train_cache.json"
     
@@ -68,18 +75,16 @@ class TrainDataService: ObservableObject {
                 return
             }
             
-            do {
-                let decoder = JSONDecoder()
-                let response = try decoder.decode(Holavonat.self, from: data)
-                
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                do {
+                    let decoder = JSONDecoder()
+                    let response = try decoder.decode(Holavonat.self, from: data)
+                    
                     self?.trainData = response
                     self?.error = nil
                     self?.saveToCache(data)
-                }
-            } catch {
-                print("Decode error: \(error)")
-                DispatchQueue.main.async {
+                } catch {
+                    print("Decode error: \(error)")
                     self?.error = "Failed to decode data"
                 }
             }

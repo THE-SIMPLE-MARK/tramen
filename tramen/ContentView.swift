@@ -73,7 +73,7 @@ struct ContentView: View {
         .sheet(isPresented: $showTrainInfo) {
             if let train = selectedTrain {
                 NavigationStack {
-                    TrainInfoSheet(train: train, trainDataService: trainDataService)
+                    TrainInfoSheet(initialTrain: train, trainDataService: trainDataService)
                 }
                 .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.visible)

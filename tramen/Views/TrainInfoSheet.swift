@@ -1,12 +1,21 @@
 import SwiftUI
 
 struct TrainInfoSheet: View {
-    let train: VehiclePositions
-    let trainDataService: TrainDataService
+    let initialTrain: VehiclePositions
+    @ObservedObject var trainDataService: TrainDataService
+    @State private var showSettings = false
+    
+    var train: VehiclePositions? {
+        trainDataService.trainData?.vehiclePositions.first { $0.vehicleId == initialTrain.vehicleId }
+    }
+    
+    var currentTrain: VehiclePositions {
+        train ?? initialTrain
+    }
     
     var delaySeconds: Int64 {
         TimeFormatHelper.getCurrentDelay(
-            stoptimes: train.trip.stoptimes,
+            stoptimes: currentTrain.trip.stoptimes,
             nowSeconds: TimeFormatHelper.getNowInSeconds()
         )
     }
@@ -17,7 +26,7 @@ struct TrainInfoSheet: View {
     
     var nextStopInfo: (name: String, delay: String)? {
         let nowSeconds = TimeFormatHelper.getNowInSeconds()
-        for stop in train.trip.stoptimes {
+        for stop in currentTrain.trip.stoptimes {
             if stop.realtimeArrival > nowSeconds {
                 return (name: stop.stop.name, delay: TimeFormatHelper.formatDelay(seconds: stop.arrivalDelay))
             }
@@ -27,38 +36,35 @@ struct TrainInfoSheet: View {
     
     var body: some View {
         List {
-            Section {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(train.trip.tripShortName ?? "Unknown")
-                        .font(.system(.title3, design: .rounded))
-                        .fontWeight(.bold)
-                    
-                    Text(train.trip.tripHeadsign ?? "N/A")
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.secondary)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            
             Section("Overview") {
                 OverviewContent(
-                    train: train,
+                    train: currentTrain,
                     delayMinutes: delayMinutes,
                     nextStopInfo: nextStopInfo
                 )
             }
             
             Section("Details") {
-                DetailsContent(train: train)
+                DetailsContent(train: currentTrain)
             }
             
-            Section("Stops (\(train.trip.stoptimes.count))") {
-                StopsContent(train: train)
+            Section("Stops (\(currentTrain.trip.stoptimes.count))") {
+                StopsContent(train: currentTrain)
             }
         }
         .navigationTitle("Train Info")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(action: { showSettings = true }) {
+                    Image(systemName: "gear")
+                }
+            }
+        }
+        .sheet(isPresented: $showSettings) {
+            SettingsView(refreshInterval: $trainDataService.refreshInterval)
+                .presentationDetents([.medium])
+        }
     }
 }
 
@@ -97,8 +103,8 @@ struct OverviewContent: View {
                             .font(.system(.caption2, design: .default))
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 4)
+                            .padding(.horizontal, 4)
+                            .padding(.vertical, 2)
                             .background(Color.secondary, in: RoundedRectangle(cornerRadius: 4))
                         
                         Text(train.trip.tripHeadsign ?? "N/A")
@@ -152,7 +158,7 @@ struct OverviewContent: View {
                         .fontWeight(.semibold)
                         .foregroundColor(.secondary)
                     
-                    HStack(spacing: 12) {
+                    HStack(spacing: 6) {
                         Image(systemName: "mappin.circle.fill")
                             .font(.system(.title3, design: .default))
                             .fontWeight(.semibold)
@@ -178,6 +184,10 @@ struct DetailsContent: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
+            InfoRow(label: "Callsign", value: train.trip.tripShortName ?? "Unknown")
+            
+            Divider()
+            
             InfoRow(label: "UIC Number", value: UICFormatter.format(vehicleId: train.vehicleId))
             
             Divider()
@@ -271,7 +281,7 @@ struct StopsContent: View {
                                 
                                 Spacer()
                                 
-                                if let platformCode = stopTime.stop.platformCode {
+                                if let platformCode = stopTime.stop.platformCode, !platformCode.isEmpty {
                                     Text("Plt \(platformCode)")
                                         .font(.system(.caption2, design: .default))
                                         .foregroundColor(.secondary)
@@ -390,7 +400,7 @@ extension View {
     )
     
     TrainInfoSheet(
-        train: mockVehicle,
+        initialTrain: mockVehicle,
         trainDataService: TrainDataService()
     )
 }

@@ -10,8 +10,12 @@ struct DelayColors {
     
     static func colorForDelay(minutes: Int) -> Color {
         switch minutes {
-        case 0...4:
+        case ..<0:
             return onTime
+        case 0:
+            return onTime
+        case 1...4:
+            return slight
         case 5...14:
             return slight
         case 15...20:
@@ -25,8 +29,12 @@ struct DelayColors {
     
     static func colorHexForDelay(minutes: Int) -> String {
         switch minutes {
-        case 0...4:
+        case ..<0:
             return "#10B981"
+        case 0:
+            return "#10B981"
+        case 1...4:
+            return "#F59E0B"
         case 5...14:
             return "#F59E0B"
         case 15...20:
