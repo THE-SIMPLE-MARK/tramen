@@ -7,7 +7,7 @@ struct Holavonat: Codable {
     let lastUpdated: Int64
 }
 
-struct VehiclePositions: Codable, Identifiable {
+struct VehiclePositions: Codable, Identifiable, Hashable, Equatable {
     let stopRelationship: StopRelationship?
     let vehicleId: String
     let label: String?
@@ -18,16 +18,26 @@ struct VehiclePositions: Codable, Identifiable {
     let lastUpdated: Int?
     let speed: Double?
     let nextStop: NextStop?
-    
-    var id: String { vehicleId }
+
+    var id: String {
+        vehicleId
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(vehicleId)
+    }
+
+    static func == (lhs: VehiclePositions, rhs: VehiclePositions) -> Bool {
+        lhs.vehicleId == rhs.vehicleId
+    }
 }
 
-struct StopRelationship: Codable {
+struct StopRelationship: Codable, Hashable, Equatable {
     let status: String?
     let stop: Stop?
 }
 
-struct Trip: Codable {
+struct Trip: Codable, Hashable, Equatable {
     let route: Route
     let tripGeometry: TripGeometry?
     let wheelchairAccessible: String?
@@ -48,7 +58,7 @@ struct Trip: Codable {
     let trainCategoryBaseId: Int64?
 }
 
-struct Route: Codable {
+struct Route: Codable, Hashable, Equatable {
     let mode: String?
     let shortName: String?
     let longName: String?
@@ -56,19 +66,19 @@ struct Route: Codable {
     let color: String?
 }
 
-struct TripGeometry: Codable {
+struct TripGeometry: Codable, Hashable, Equatable {
     let points: String?
     let length: Int?
 }
 
-struct Stop: Codable {
+struct Stop: Codable, Hashable, Equatable {
     let name: String
     let platformCode: String?
     let lat: Double
     let lon: Double
 }
 
-struct Stoptimes: Codable {
+struct Stoptimes: Codable, Hashable, Equatable {
     let stop: Stop
     let realtimeArrival: Int64
     let realtimeDeparture: Int64
@@ -78,15 +88,15 @@ struct Stoptimes: Codable {
     let scheduledDeparture: Int64
 }
 
-struct NextStop: Codable {
+struct NextStop: Codable, Hashable, Equatable {
     let arrivalDelay: Int64
 }
 
-struct ArrivalStoptime: Codable {
+struct ArrivalStoptime: Codable, Hashable, Equatable {
     let arrivalDelay: Int64?
 }
 
-struct InfoService: Codable {
+struct InfoService: Codable, Hashable, Equatable {
     let name: String?
     let fontCharSet: String?
     let fromStopIndex: Int?
@@ -95,7 +105,7 @@ struct InfoService: Codable {
     let displayable: Bool?
 }
 
-struct Alerts: Codable {
+struct Alerts: Codable, Hashable, Equatable {
     let alertUrl: AnyCodable?
     let id: String
     let feed: String
@@ -109,24 +119,24 @@ struct Alerts: Codable {
     let effectiveStartDate: Int?
 }
 
-struct Pattern: Codable {
+struct Pattern: Codable, Hashable, Equatable {
     let id: String?
 }
 
-struct Source: Codable {
+struct Source: Codable, Hashable, Equatable {
     let origin: String?
     let latest: String?
     let directLink: String?
     let schema: Schema?
 }
 
-struct Schema: Codable {
+struct Schema: Codable, Hashable, Equatable {
     let version: String?
     let link: String?
     let format: String?
 }
 
-enum AnyCodable: Codable {
+enum AnyCodable: Codable, Hashable, Equatable {
     case null
     case bool(Bool)
     case int(Int)
@@ -134,7 +144,7 @@ enum AnyCodable: Codable {
     case string(String)
     case array([AnyCodable])
     case object([String: AnyCodable])
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if container.decodeNil() {
@@ -155,23 +165,23 @@ enum AnyCodable: Codable {
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode AnyCodable")
         }
     }
-    
+
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .null:
             try container.encodeNil()
-        case .bool(let bool):
+        case let .bool(bool):
             try container.encode(bool)
-        case .int(let int):
+        case let .int(int):
             try container.encode(int)
-        case .double(let double):
+        case let .double(double):
             try container.encode(double)
-        case .string(let string):
+        case let .string(string):
             try container.encode(string)
-        case .array(let array):
+        case let .array(array):
             try container.encode(array)
-        case .object(let object):
+        case let .object(object):
             try container.encode(object)
         }
     }

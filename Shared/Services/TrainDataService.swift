@@ -1,5 +1,5 @@
-import Foundation
 import Combine
+import Foundation
 
 class TrainDataService: ObservableObject {
     @Published var trainData: Holavonat?
@@ -7,59 +7,65 @@ class TrainDataService: ObservableObject {
     @Published var error: String?
     @Published var refreshInterval: TimeInterval = 15.0 {
         didSet {
+            UserDefaults.standard.set(refreshInterval, forKey: "tramen_refreshInterval")
             if refreshTimer != nil {
                 stopRefreshing()
                 startRefreshing()
             }
         }
     }
-    
+
     private var refreshTimer: Timer?
     private let apiUrl = "https://cdn.holavonat.is/train_data_v3.json"
     private let cacheFileName = "train_cache.json"
-    
+
     private var cacheUrl: URL? {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?
             .appendingPathComponent(cacheFileName)
     }
-    
+
+    init() {
+        let savedInterval = UserDefaults.standard.double(forKey: "tramen_refreshInterval")
+        refreshInterval = savedInterval > 0 ? savedInterval : 15.0
+    }
+
     deinit {
         stopRefreshing()
     }
-    
+
     func startRefreshing() {
         loadFromCache()
-        
+
         fetchTrainData()
-        
+
         refreshTimer = Timer.scheduledTimer(withTimeInterval: refreshInterval, repeats: true) { [weak self] _ in
             self?.fetchTrainData()
         }
     }
-    
+
     func stopRefreshing() {
         refreshTimer?.invalidate()
         refreshTimer = nil
     }
-    
+
     private func fetchTrainData() {
         guard !isLoading else { return }
-        
+
         DispatchQueue.main.async {
             self.isLoading = true
         }
-        
+
         let session = URLSession(configuration: .default)
         var request = URLRequest(url: URL(string: apiUrl)!)
         request.timeoutInterval = 10
-        
-        session.dataTask(with: request) { [weak self] data, response, error in
+
+        session.dataTask(with: request) { [weak self] data, _, error in
             defer {
                 DispatchQueue.main.async {
                     self?.isLoading = false
                 }
             }
-            
+
             if let error = error {
                 print("Fetch error: \(error.localizedDescription)")
                 DispatchQueue.main.async {
@@ -67,19 +73,19 @@ class TrainDataService: ObservableObject {
                 }
                 return
             }
-            
+
             guard let data = data else {
                 DispatchQueue.main.async {
                     self?.error = "No data received"
                 }
                 return
             }
-            
+
             DispatchQueue.main.async {
                 do {
                     let decoder = JSONDecoder()
                     let response = try decoder.decode(Holavonat.self, from: data)
-                    
+
                     self?.trainData = response
                     self?.error = nil
                     self?.saveToCache(data)
@@ -90,15 +96,15 @@ class TrainDataService: ObservableObject {
             }
         }.resume()
     }
-    
+
     private func loadFromCache() {
         guard let cacheUrl = cacheUrl else { return }
-        
+
         do {
             let data = try Data(contentsOf: cacheUrl)
             let decoder = JSONDecoder()
             let response = try decoder.decode(Holavonat.self, from: data)
-            
+
             DispatchQueue.main.async {
                 self.trainData = response
             }
@@ -106,10 +112,10 @@ class TrainDataService: ObservableObject {
             print("Cache load error: \(error)")
         }
     }
-    
+
     private func saveToCache(_ data: Data) {
         guard let cacheUrl = cacheUrl else { return }
-        
+
         DispatchQueue.global(qos: .background).async {
             do {
                 try data.write(to: cacheUrl)

@@ -1,26 +1,26 @@
-import Foundation
-import CoreLocation
 import Combine
+import CoreLocation
+import Foundation
 
 class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var userLocation: CLLocationCoordinate2D?
     @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
     @Published var isLoading = true
-    
+
     private let locationManager = CLLocationManager()
     private let defaultHungaryCenter = CLLocationCoordinate2D(latitude: 47.3, longitude: 19.1)
-    
+
     override init() {
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
+
         requestLocationPermission()
     }
-    
+
     func requestLocationPermission() {
         let status = locationManager.authorizationStatus
-        
+
         switch status {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
@@ -36,11 +36,11 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate {
             isLoading = false
         }
     }
-    
+
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         let status = manager.authorizationStatus
         authorizationStatus = status
-        
+
         switch status {
         case .authorizedWhenInUse, .authorizedAlways:
             manager.startUpdatingLocation()
@@ -53,18 +53,18 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate {
             break
         }
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
-        
+
         DispatchQueue.main.async {
             self.userLocation = location.coordinate
             self.isLoading = false
             manager.stopUpdatingLocation()
         }
     }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+
+    func locationManager(_: CLLocationManager, didFailWithError error: Error) {
         print("Location error: \(error.localizedDescription)")
         DispatchQueue.main.async {
             self.userLocation = self.defaultHungaryCenter

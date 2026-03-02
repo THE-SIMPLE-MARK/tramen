@@ -7,17 +7,58 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D45223C2F5633C900005738 /* tramen Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4D4522322F5633C800005738 /* tramen Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4D45225F2F56388D00005738 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 4D5493932F54E62F00444E54 /* AppIcon.icon */; };
+		4D4522632F5640D000005738 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4D4522612F5640D000005738 /* Settings.bundle */; };
+		4D4522642F5640D000005738 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4D4522612F5640D000005738 /* Settings.bundle */; };
 		4D5493922F54DF1100444E54 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4D5493912F54DF1100444E54 /* Localizable.xcstrings */; };
 		4D5493942F54E62F00444E54 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 4D5493932F54E62F00444E54 /* AppIcon.icon */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4D45223A2F5633C900005738 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4DAADE4D2F53D2C9006111F7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4D4522312F5633C800005738;
+			remoteInfo = "tramenf Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4D4522402F5633C900005738 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				4D45223C2F5633C900005738 /* tramen Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		4D4522322F5633C800005738 /* tramen Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tramen Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D4522502F56343B00005738 /* tramen-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "tramen-Watch-App-Info.plist"; sourceTree = "<group>"; };
+		4D4522612F5640D000005738 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4D5493912F54DF1100444E54 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		4D5493932F54E62F00444E54 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		4DAADE552F53D2C9006111F7 /* tramen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tramen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		4D4520D22F56330C00005738 /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		4D4522332F5633C800005738 /* tramen Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "tramen Watch App";
+			sourceTree = "<group>";
+		};
 		4DAADE572F53D2C9006111F7 /* tramen */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = tramen;
@@ -26,6 +67,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4D45222F2F5633C800005738 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4DAADE522F53D2C9006111F7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -39,10 +87,14 @@
 		4DAADE4C2F53D2C9006111F7 = {
 			isa = PBXGroup;
 			children = (
+				4D4522502F56343B00005738 /* tramen-Watch-App-Info.plist */,
 				4D5493912F54DF1100444E54 /* Localizable.xcstrings */,
 				4D5493932F54E62F00444E54 /* AppIcon.icon */,
 				4DAADE572F53D2C9006111F7 /* tramen */,
+				4D4522332F5633C800005738 /* tramen Watch App */,
 				4DAADE562F53D2C9006111F7 /* Products */,
+				4D4520D22F56330C00005738 /* Shared */,
+				4D4522612F5640D000005738 /* Settings.bundle */,
 			);
 			sourceTree = "<group>";
 		};
@@ -50,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				4DAADE552F53D2C9006111F7 /* tramen.app */,
+				4D4522322F5633C800005738 /* tramen Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,6 +110,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4D4522312F5633C800005738 /* tramen Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4D45223D2F5633C900005738 /* Build configuration list for PBXNativeTarget "tramen Watch App" */;
+			buildPhases = (
+				4D45222E2F5633C800005738 /* Sources */,
+				4D45222F2F5633C800005738 /* Frameworks */,
+				4D4522302F5633C800005738 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				4D4520D22F56330C00005738 /* Shared */,
+				4D4522332F5633C800005738 /* tramen Watch App */,
+			);
+			name = "tramen Watch App";
+			packageProductDependencies = (
+			);
+			productName = "tramenf Watch App";
+			productReference = 4D4522322F5633C800005738 /* tramen Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
 		4DAADE542F53D2C9006111F7 /* tramen */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4DAADE602F53D2CA006111F7 /* Build configuration list for PBXNativeTarget "tramen" */;
@@ -64,12 +140,15 @@
 				4DAADE512F53D2C9006111F7 /* Sources */,
 				4DAADE522F53D2C9006111F7 /* Frameworks */,
 				4DAADE532F53D2C9006111F7 /* Resources */,
+				4D4522402F5633C900005738 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4D45223B2F5633C900005738 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
+				4D4520D22F56330C00005738 /* Shared */,
 				4DAADE572F53D2C9006111F7 /* tramen */,
 			);
 			name = tramen;
@@ -89,6 +168,9 @@
 				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 2620;
 				TargetAttributes = {
+					4D4522312F5633C800005738 = {
+						CreatedOnToolsVersion = 26.2;
+					};
 					4DAADE542F53D2C9006111F7 = {
 						CreatedOnToolsVersion = 26.2;
 					};
@@ -109,16 +191,27 @@
 			projectRoot = "";
 			targets = (
 				4DAADE542F53D2C9006111F7 /* tramen */,
+				4D4522312F5633C800005738 /* tramen Watch App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4D4522302F5633C800005738 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D4522642F5640D000005738 /* Settings.bundle in Resources */,
+				4D45225F2F56388D00005738 /* AppIcon.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4DAADE532F53D2C9006111F7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				4D5493922F54DF1100444E54 /* Localizable.xcstrings in Resources */,
+				4D4522632F5640D000005738 /* Settings.bundle in Resources */,
 				4D5493942F54E62F00444E54 /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -126,6 +219,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4D45222E2F5633C800005738 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4DAADE512F53D2C9006111F7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -135,7 +235,85 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		4D45223B2F5633C900005738 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4D4522312F5633C800005738 /* tramen Watch App */;
+			targetProxy = 4D45223A2F5633C900005738 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		4D45223E2F5633C900005738 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 88569CDNNN;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "tramen-Watch-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Tramen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = markventures.tramen;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = markventures.tramen.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.2;
+			};
+			name = Debug;
+		};
+		4D45223F2F5633C900005738 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 88569CDNNN;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "tramen-Watch-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Tramen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = markventures.tramen;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = markventures.tramen.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.2;
+			};
+			name = Release;
+		};
 		4DAADE5E2F53D2CA006111F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -332,6 +510,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4D45223D2F5633C900005738 /* Build configuration list for PBXNativeTarget "tramen Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D45223E2F5633C900005738 /* Debug */,
+				4D45223F2F5633C900005738 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4DAADE502F53D2C9006111F7 /* Build configuration list for PBXProject "tramen" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

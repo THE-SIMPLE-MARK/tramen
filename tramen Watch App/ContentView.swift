@@ -5,7 +5,6 @@ struct ContentView: View {
     @StateObject private var locationService = LocationService()
     @StateObject private var trainDataService = TrainDataService()
     @State private var selectedTrain: VehiclePositions?
-    @State private var showTrainInfo = false
     @State private var mapPosition: MapCameraPosition = .automatic
     @State private var routeCoordinates: [CLLocationCoordinate2D] = []
     @Environment(\.scenePhase) var scenePhase
@@ -27,12 +26,11 @@ struct ContentView: View {
                         Annotation("", coordinate: CLLocationCoordinate2D(latitude: train.lat, longitude: train.lon)) {
                             VStack(spacing: 0) {
                                 Image(systemName: "triangle.fill")
-                                    .font(.system(.title3))
-                                    .fontWeight(.semibold)
+                                    .font(.system(size: 16, weight: .semibold))
                                     .foregroundColor(DelayColors.colorForDelay(minutes: delayMinutes))
                                     .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 1)
                             }
-                            .scaleEffect(isSelected ? 1.5 : 1.0)
+                            .scaleEffect(isSelected ? 1.3 : 1.0)
                             .animation(.easeInOut(duration: 0.3), value: isSelected)
                             .onTapGesture {
                                 selectTrain(train)
@@ -43,57 +41,45 @@ struct ContentView: View {
 
                 if !routeCoordinates.isEmpty {
                     MapPolyline(coordinates: routeCoordinates)
-                        .stroke(.red, lineWidth: 3)
+                        .stroke(.red, lineWidth: 2)
                 }
             }
             .mapStyle(.standard)
             .onTapGesture { _ in
                 selectedTrain = nil
-                showTrainInfo = false
                 routeCoordinates = []
             }
             .onAppear {
                 if let location = locationService.userLocation {
                     mapPosition = .region(MKCoordinateRegion(
                         center: location,
-                        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+                        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
                     ))
                 }
             }
-
-            VStack {
-                RefreshingIndicator(isShowing: trainDataService.isLoading)
-                Spacer()
-            }
-        }
-        .sheet(isPresented: $showTrainInfo) {
-            if let train = selectedTrain {
-                NavigationStack {
-                    TrainDetailSheet(initialTrain: train, trainDataService: trainDataService)
+            .onChange(of: scenePhase) {
+                if scenePhase == .active {
+                    trainDataService.startRefreshing()
+                } else {
+                    trainDataService.stopRefreshing()
                 }
-                .presentationDetents([.medium, .large])
-                .presentationDragIndicator(.visible)
             }
         }
-        .onChange(of: scenePhase) {
-            if scenePhase == .active {
-                trainDataService.startRefreshing()
-            } else {
-                trainDataService.stopRefreshing()
-            }
+        .sheet(item: $selectedTrain) { train in
+            TrainDetailSheet(train: train, trainDataService: trainDataService)
         }
     }
 
     private func selectTrain(_ train: VehiclePositions) {
         selectedTrain = train
-        showTrainInfo = true
 
         if let points = train.trip.tripGeometry?.points {
             routeCoordinates = PolylineDecoder.decode(points)
         }
     }
-
 }
+
+
 
 #Preview {
     ContentView()

@@ -24,9 +24,6 @@
         }
       }
     },
-    "%llds" : {
-      "shouldTranslate" : false
-    },
     "• %@" : {
       "shouldTranslate" : false
     },
@@ -91,6 +88,7 @@
       }
     },
     "Done" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hu" : {
           "stringUnit" : {
@@ -171,6 +169,7 @@
       }
     },
     "Refresh Settings" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hu" : {
           "stringUnit" : {
@@ -221,6 +220,7 @@
       }
     },
     "Settings" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hu" : {
           "stringUnit" : {
@@ -321,6 +321,7 @@
       }
     },
     "Update Frequency" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hu" : {
           "stringUnit" : {
@@ -331,6 +332,7 @@
       }
     },
     "Updates every %lld seconds" : {
+      "extractionState" : "stale",
       "localizations" : {
         "hu" : {
           "stringUnit" : {
