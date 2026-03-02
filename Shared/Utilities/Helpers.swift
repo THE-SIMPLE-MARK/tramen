@@ -62,9 +62,14 @@ enum TrainTypeHelper {
 
 enum TimeFormatHelper {
     static func formatSecondsSinceMidnight(_ seconds: Int64) -> String {
-        let hours = Int(seconds / 3600) % 24
-        let minutes = Int((seconds % 3600) / 60)
-        return String(format: "%02d:%02d", hours, minutes)
+        var components = DateComponents()
+        components.hour = Int(seconds / 3600) % 24
+        components.minute = Int((seconds % 3600) / 60)
+        components.second = Int(seconds % 60)
+        
+        let calendar = Calendar.current
+        let date = calendar.date(from: components) ?? Date()
+        return date.formatted(date: .omitted, time: .shortened)
     }
 
     static func formatDelay(seconds: Int64?) -> String {
